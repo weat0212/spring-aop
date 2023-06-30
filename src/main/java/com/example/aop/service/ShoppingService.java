@@ -1,20 +1,21 @@
 package com.example.aop.service;
 
 import com.example.aop.annotation.InventoryOperation;
-import com.example.aop.database.MockDAO;
+import com.example.aop.database.IMockDAO;
 import com.example.aop.exception.OperationException;
 import com.example.aop.model.Product;
 import com.example.aop.model.mapper.ProductMapper;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ShoppingService {
 
-    private final MockDAO mockDAO;
+    private final IMockDAO mockDAO;
 
     private final ProductMapper productMapper;
 
-    public ShoppingService(MockDAO mockDAO, ProductMapper productMapper) {
+    public ShoppingService(@Qualifier("mockDAOProxy") IMockDAO mockDAO, ProductMapper productMapper) {
         this.mockDAO = mockDAO;
         this.productMapper = productMapper;
     }
