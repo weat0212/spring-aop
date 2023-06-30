@@ -3,11 +3,11 @@ package com.example.aop.controller;
 import com.example.aop.exception.OperationException;
 import com.example.aop.model.Product;
 import com.example.aop.service.ShoppingService;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 @RequestMapping("/shop")
 public class ShoppingController {
 
@@ -27,5 +27,10 @@ public class ShoppingController {
     @GetMapping("/offShelve")
     public void offShelve() throws OperationException {
         shoppingService.offShelve(MOCK_PRODUCT);
+    }
+
+    @GetMapping("/loadProduct")
+    public Product loadProduct() {
+        return shoppingService.getProduct();
     }
 }
